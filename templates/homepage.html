@@ -1,0 +1,165 @@
+<html>
+<head>
+	<title>UniComparator</title>
+	
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+
+	<!-- custom CSS-->
+	<link rel="stylesheet" href="stylesheets/main.css">
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+
+</head>		
+
+
+
+<body>
+	<!--NAVBAR=====================-->
+	<div class="navbar navbar-default">
+		<div class="container">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a href="/"><img src ="images/logo2.png"></a>
+  </div>
+  <div class="navbar-collapse collapse navbar-responsive-collapse">
+    <ul class="nav navbar-nav"> 
+    </ul>
+
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="/userpage">{{ username }}</a></li>
+      <li class="active"><a href="/homepage">Home</a></li>
+      <li class="dropdown">
+          <a href="#">View by<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="/budget">Budget</a></li>
+            <li><a href="/region">Region</a></li>
+            <li><a href="/ranking">Ranking</a></li>
+          </ul>
+        </li>
+      <li><a href="/aboutus">About Us</a></li>
+      <li><a href="{{ logout }}">Logout</a></li>
+    </ul>
+  </div>
+	</div>
+	</div>
+
+<!--CAROUSEL====================================================================-->
+  <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+
+      </ol>
+      <div class="carousel-inner">
+        <div class="item active">
+          <img src="images/background1CROP.png" alt="First slide">
+          
+              <!--div class="carousel-caption caption1"-->
+              <h1 class="carousel-caption cap-heading-1a">UniComparator</h1>
+              <h2 class="carousel-caption cap-heading-1b">"A university matching website <br>that helps you find<br> the most suitable university <br>for your exchange journey"</h2>
+            <!--/div-->
+          
+        </div>
+        <div class="item">
+          <img src="images/background2CROP.png" alt="Second slide">
+          <div class="container">
+            
+              <h1 class="carousel-caption cap-heading-2a">Features</h1>
+              <ul>
+                <li><h3 class="carousel-caption cap-heading-2b">Filter according to your needs</h3></li>
+                <li><h3 class="carousel-caption cap-heading-2c">Add to favourites</h3></li>
+                <li><h3 class="carousel-caption cap-heading-2d">Look at others' reivews</h3></li>
+              </ul>
+            
+          </div>
+        </div>
+        <div class="item">
+          <img src="images/background3.png" alt="Third slide">
+          <div class="container">
+            <div class="carousel-caption caption3">
+              <h1>A Vostok Project</h1>
+              <p>for Orbital</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <a class="left-carousel-arrow carousel-arrow" href="#myCarousel" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+      <a class="right-carousel-arrow carousel-arrow" href="#myCarousel" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+    </div><!-- /.carousel -->
+
+<!--BUTTONS=======================-->
+
+<div class="container big-btn-container">
+    <!--h2 style=" position: relative; top:50px; color:#ACD1E9;">View by:</h2-->
+    <a href="/budget"><button type="button" class="btn btn-circle btn-xl"><i class="glyphicon glyphicon-usd"></i>
+      <div class="caption">
+        <h4 style="color:white;">Budget</h4>
+      </div>
+    </button></a>
+  
+
+  <a href="/ranking"><button type="button" class="btn btn-circle btn-xl"><i class="glyphicon glyphicon-th-list"></i>
+     <div class="caption">
+        <h4 style="color:white;">Ranking</h4>
+      </div>
+  </button></a>
+  
+  <a href ="/region"><button type="button" class="btn btn-circle btn-xl"><i class="glyphicon glyphicon-globe"></i>
+     <div class="caption">
+        <h4 style="color:white;">Region</h4>
+      </div>
+  </button></a>
+
+  <a href="#"><button type="button" class="btn btn-circle btn-xl"><i class="glyphicon glyphicon-th-large"></i>
+     <div class="caption">
+        <h4 style="color:white;">Filter</h4>
+      </div>
+  </button></a>
+</div>
+
+
+<!--THUMBNAILS=======================-->
+
+<div class="container sch-container">
+  <div class="row">
+    {% for i in query %}
+    <div class="col-sm-6 col-md-3">
+      <div class="thumbnail">
+        <img src="{{i.pic_sml}}" style="padding-top: 8px;">
+        <div class="schoolcaption" style="text-align:center; margin-top:10px;">
+          <h4>{{ i.name }}</h4>
+            <div class="view-add-container">
+              <form action="/search" method="get">
+               <input type="hidden" name="uni_name" value="{{ i.name }}">
+              <button type="submit" class="btn btn-info view-btn" role="button">View</button>
+            </form>
+
+            <form action="#">
+              <button type="submit" class="btn btn-success add-btn" role="button">Add</button>
+            </form></div>
+
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div><!--closing tag for conatiner-->
+
+  <a href="#" class="back-to-top"><i class="glyphicon glyphicon-chevron-up"></i></a>
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="bootstrap/js/myjs.js"></script>
+</body>
+</html>

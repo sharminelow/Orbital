@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<title>UniComparator</title>
+	
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+
+
+	<!-- custom CSS-->
+	<link rel="stylesheet" href="stylesheets/main.css">
+
+</head>		
+
+<body>
+  <!--NAVBAR=====================-->
+  <div class="navbar navbar-default">
+    <div class="container">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a href="/"><img src ="images/logo2.png"></a>
+  </div>
+  <div class="navbar-collapse collapse navbar-responsive-collapse">
+    <ul class="nav navbar-nav"> 
+    </ul>
+
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="/userpage">{{ username }}</a></li>
+      <li class><a href="/homepage">Home</a></li>
+      <li class="dropdown">
+          <a href="#">View by<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="/budget">Budget</a></li>
+            <li><a href="/region">Region</a></li>
+            <li><a href="/ranking">Ranking</a></li>
+          </ul>
+        </li>
+      <li><a href="/aboutus">About Us</a></li>
+      <li><a href="{{ logout }}">Logout</a></li>
+    </ul>
+  </div>
+  </div>
+  </div>
+  
+<!--ATTRIBUTES===========================================-->
+
+<div class="container indiv-container">
+  <img class="center-block" src="{{uni.pic_large}}">
+    <div class="container attributes-container">
+      <span class="attributes">Name:</span><span class="info">{{uni.name}}</span>
+      <hr>
+      <span class="attributes">City:</span><span class="info">{{uni.city_state}}</span>
+      <hr>
+      <span class="attributes">Estimated Budget:</span><span class="info">{{uni.budget}}</span>
+      <hr>
+      <span class="attributes">Ranking:</span><span class="info">{{uni.rank_global}}</span>
+      <hr>
+      <span class="attributes">Remarks:</span><span class="info">{{uni.remarks}}</span>
+      <hr>
+      <span class="attributes">Official Website:</span><span class="info">{{uni.weblink}}</span>
+  </div>
+</div>
+
+<!--COMMENTS=============================================================-->
+
+<div class="container comments-container">
+  <h2>Comments about this university</h2>
+  {% for comment in comments %}
+    <div class="feedback">
+      <span><img src="images/user-iconSML.png" class="userpic"></span>
+      <div class="one-comment">
+        <p class="contents">
+          {{comment.content}} 
+        </p><br/><br/>
+        <p class="date-time">
+          {{comment.author}}, {{ comment.date.strftime('%Y-%m-%d %I:%M%p') }}
+        </p>
+      </div>
+    </div>
+
+  {% endfor %}
+  
+</div>
+
+<!--LEAVE A REPLY BOX===========================================================-->
+
+<div class="container reply-container">
+  <h2>Leave a Comment/Review below!</h2>
+
+    <form action= "/search" method="post">
+      <div class="container">
+        <textarea class="input-xlarge" type="text" name="content" placeholder="Share your thoughts"></textarea>
+        <input type="hidden" name="uni_name" value="{{ uni.name }}">
+        <button class="btn" type="submit">Submit</button>
+      </div>
+    </form>
+
+
+</div>
+
+
+
+
+  <a href="#" class="back-to-top"><i class="glyphicon glyphicon-chevron-up"></i></a>
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="bootstrap/js/myjs.js"></script>
+
+</body>
+</html>

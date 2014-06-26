@@ -1,0 +1,82 @@
+<html>
+<head>
+	<title>UniComparator</title>
+	
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+
+	<!-- custom CSS-->
+	<link rel="stylesheet" href="stylesheets/main.css">
+
+</head>		
+
+
+
+<body>
+  <!--NAVBAR=====================-->
+  <div class="navbar navbar-default">
+    <div class="container">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a href="/"><img src ="images/logo2.png"></a>
+  </div>
+  <div class="navbar-collapse collapse navbar-responsive-collapse">
+    <ul class="nav navbar-nav"> 
+    </ul>
+
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="/userpage">{{ username }}</a></li>
+      <li><a href="/homepage">Home</a></li>
+      <li class="dropdown">
+          <a href="#">View by<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="/budget">Budget</a></li>
+            <li><a href="/region">Region</a></li>
+            <li><a href="/ranking">Ranking</a></li>
+          </ul>
+        </li>
+      <li class="active"><a href="/aboutus">About Us</a></li>
+      <li><a href="{{ logout }}">Logout</a></li>
+    </ul>
+  </div>
+  </div>
+  </div>
+  
+<!---ABOUT US===================================================-->
+<div class="container abt-container">
+      
+      <div class="row abt-row">
+      <img id="abt-img1" src="images/creators.png">
+
+        <div id="panel1">Team UniComparator (aka HappierW/0ky)
+
+        </div>
+      </div>
+      
+      <div class="row abt-row">
+      <img id="abt-img2" src="images/desc.png">
+        <span id="panel2"> This project targets SOC exchange students who are at a loss on their desired universities. Information in here is not completely true, definitely not the photos. ;)
+        </span>
+      </div>
+
+      <div class="row abt-row">
+      <img id="abt-img3" src="images/contact.png">
+          <div id="panel3">National University of Singapore, School Of Computing
+        </div>
+      </div>
+
+</div>
+
+  <a href="#" class="back-to-top"><i class="glyphicon glyphicon-chevron-up"></i></a>
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="bootstrap/js/myjs.js"></script>
+</body>
+</html>
