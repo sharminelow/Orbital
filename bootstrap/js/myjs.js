@@ -26,8 +26,12 @@
 		            return false;
 		        });
    
-
+                
+                $('#showmenu').click(function() {
+               		$('.menu').slideToggle("fast");
+       			});
 			
+				
 				$(".list-group-item").click(function () {
    		 			$(this).toggleClass("clicked");
 				});

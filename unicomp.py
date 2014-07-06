@@ -20,7 +20,26 @@ class Comment(ndb.Model):
     author = ndb.StringProperty()
     date = ndb.DateTimeProperty(auto_now_add=True)
     
+class Persons(ndb.Model):
+    # Models a person. Key is the email.
+    next_fav = ndb.IntegerProperty()  
 
+class Favourites(ndb.Model):
+    fav_uni = ndb.StringProperty()
+    
+def addToFave(email, uni_name):
+        curr_user = ndb.Key('Persons', email)
+        person = curr_user.get()
+        if person == None:
+            person = Persons(id=email)
+            person.next_fav = 1            
+
+        fav = Favourites(parent=curr_user, id= uni_name)
+        fav.fav_uni = uni_name
+        person.next_fav +=1
+        person.put()
+        fav.put()
+        
 # This part for the front page
 class MainPage(webapp2.RequestHandler):
 
@@ -31,7 +50,7 @@ class MainPage(webapp2.RequestHandler):
 # Front page for those logged in
 class MainPageUser(webapp2.RequestHandler):
     
-    def get(self):
+    def show(self):
         user = users.get_current_user()
         if user:  # signed in already
 
@@ -47,9 +66,15 @@ class MainPageUser(webapp2.RequestHandler):
         else:
             self.redirect(users.create_login_url(self.request.uri))
 
+    def get(self):
+        uni_name = self.request.get('uni_name')
+        email = users.get_current_user().email()
+        addToFave(email, uni_name) 
+        self.show()
+
 class BudgetPage(webapp2.RequestHandler):
     
-    def get(self):
+    def show(self):
         user = users.get_current_user()
         if user:  # signed in already
 
@@ -77,10 +102,15 @@ class BudgetPage(webapp2.RequestHandler):
             self.response.out.write(template.render(template_values))
         else:
             self.redirect(users.create_login_url(self.request.uri))
-
+    def get(self):
+        uni_name = self.request.get('uni_name')
+        email = users.get_current_user().email()
+        addToFave(email, uni_name) 
+        self.show()
+        
 class RegionPage(webapp2.RequestHandler):
     
-    def get(self):
+    def show(self):
         user = users.get_current_user()
         if user:  # signed in already
             query_asia = ndb.gql("SELECT * "
@@ -109,10 +139,15 @@ class RegionPage(webapp2.RequestHandler):
             self.response.out.write(template.render(template_values))
         else:
             self.redirect(users.create_login_url(self.request.uri))
-
+    def get(self):
+        uni_name = self.request.get('uni_name')
+        email = users.get_current_user().email()
+        addToFave(email, uni_name) 
+        self.show()
+        
 class RankPage(webapp2.RequestHandler):
     
-    def get(self):
+    def show(self):
         user = users.get_current_user()
         if user:  # signed in already
 
@@ -131,6 +166,12 @@ class RankPage(webapp2.RequestHandler):
         else:
             self.redirect(users.create_login_url(self.request.uri))
 
+    def get(self):
+        uni_name = self.request.get('uni_name')
+        email = users.get_current_user().email()
+        addToFave(email, uni_name) 
+        self.show()
+        
 class Search(webapp2.RequestHandler):
     #individual page for each uni
     def show(self):
@@ -169,20 +210,32 @@ class Search(webapp2.RequestHandler):
         comment.put()
         self.show()
 
+
 class UserPage(webapp2.RequestHandler):
     #test page currently for database
     def get(self):
         user = users.get_current_user()
+        curr_user = ndb.Key('Persons', users.get_current_user().email())
         if user:  # signed in already
 
             query = ndb.gql("SELECT * "
-                            "FROM University ")
+                            "FROM Favourites "
+                            "WHERE ANCESTOR IS :1 ",
+                            curr_user)
 
-            
+            query2 = ndb.gql("SELECT * "
+                             "FROM University "
+                                 )
+            a_list = []
+            for i in query:
+                for j in query2:
+                    if i.fav_uni == j.name :
+                        a_list.append(j)
+                        
             template_values = {
                 'username': users.get_current_user().nickname(),
                 'logout': users.create_logout_url(self.request.host_url),
-                'query': query,
+                'query': a_list,
             }
             
             template = jinja_environment.get_template('userpage.html') 
@@ -191,7 +244,6 @@ class UserPage(webapp2.RequestHandler):
             self.redirect(users.create_login_url(self.request.uri))
             
 class AbtUsPage(webapp2.RequestHandler):
-    #test page currently for database
     def get(self):
         user = users.get_current_user()
         if user:  # signed in already
@@ -212,6 +264,95 @@ class AbtUsPage(webapp2.RequestHandler):
             self.redirect(users.create_login_url(self.request.uri))
 
 
+class FilterPage(webapp2.RequestHandler):
+
+    def get(self):
+        user = users.get_current_user()
+        if user:  # signed in already
+            wanted_Budget = self.request.get('budget')
+            wanted_Rank = self.request.get('ranking')
+            wanted_Region = self.request.get('region')
+
+           
+            query1 = ndb.gql("SELECT * "
+                            "FROM University "
+                            + getbudget(wanted_Budget)  
+                            )
+
+            query2 = ndb.gql("SELECT * "
+                            "FROM University "
+                            + getrank(wanted_Rank)  
+                            )             
+            a_list = []
+            for i in query1:
+                for j in query2:
+                    if i.name == j.name :
+                        a_list.append(j)
+
+            if wanted_Region != 'none':
+                query3 = ndb.gql("SELECT * "
+                                 "FROM University "
+                                 "WHERE region =:1", getregion(wanted_Region)  
+                                 )
+                b_list = []
+                for i in query3:
+                    for j in a_list:
+                        if i.name == j.name :
+                            b_list.append(j)
+
+                queryfinal=b_list
+                
+            else:
+                queryfinal = a_list
+
+            template_values = {
+                'username': users.get_current_user().nickname(),
+                'logout': users.create_logout_url(self.request.host_url),
+                'query' : queryfinal
+            }
+            
+            template = jinja_environment.get_template('filterpage.html') 
+            self.response.out.write(template.render(template_values))
+        else:
+            self.redirect(users.create_login_url(self.request.uri))
+
+def getbudget(value):
+    if value=='0':
+        return "WHERE budget_avg <500"
+    elif value=='500':
+        return "WHERE budget_avg >=500 AND budget_avg<1000"
+    elif value=='1000':
+        return "WHERE budget_avg >=1000 AND budget_avg<1500"
+    elif value=='1500':
+        return "WHERE budget_avg >=1500"
+    else:
+        return ""
+
+def getrank(value):
+    if value=='0':
+        return "WHERE rank_avg <100"
+    elif value=='100':
+        return "WHERE rank_avg >=100 AND rank_avg<200"
+    elif value=='200':
+        return "WHERE rank_avg >=200 AND rank_avg<300"
+    elif value=='300':
+        return "WHERE budget_avg >=300"
+    else:
+        return ""
+    
+def getregion(value):
+
+    if value=='Asia':
+        return  'Asia'
+    elif value=='Australia':
+        return 'Australia'
+    elif value=='Europe':
+        return 'Europe'
+    elif value=='America':
+        return 'America'
+    else:
+        return ""
+    
 app = webapp2.WSGIApplication([
     ('/', MainPage),
     ('/homepage', MainPageUser),
@@ -220,5 +361,6 @@ app = webapp2.WSGIApplication([
     ('/ranking', RankPage),
     ('/search', Search),
     ('/userpage', UserPage),
-    ('/aboutus', AbtUsPage)
+    ('/aboutus', AbtUsPage),
+    ('/results', FilterPage)
 ], debug=True)

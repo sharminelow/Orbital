@@ -18,48 +18,48 @@
   <!--NAVBAR=====================-->
   <div class="navbar navbar-default">
     <div class="container">
-  <div class="navbar-header">
-    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </button>
-    <a href="/"><img src ="images/logo2.png"></a>
-  </div>
-  <div class="navbar-collapse collapse navbar-responsive-collapse">
-    <ul class="nav navbar-nav"> 
-    </ul>
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a href="/"><img src ="images/logo2.png"></a>
+      </div>
+      <div class="navbar-collapse collapse navbar-responsive-collapse">
+        <ul class="nav navbar-nav"> 
+        </ul>
 
-    <ul class="nav navbar-nav navbar-right">
-      <li><a href="/userpage">{{ username }}</a></li>
-      <li><a href="/homepage">Home</a></li>
-      <li class="dropdown active">
-          <a href="#">View by<b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <li><a href="/budget">Budget</a></li>
-            <li><a href="/region">Region</a></li>
-            <li><a href="/ranking">Ranking</a></li>
-          </ul>
-        </li>
-      <li><a href="/aboutus">About Us</a></li>
-      <li><a href="{{ logout }}">Logout</a></li>
-    </ul>
-  </div>
-  </div>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="/userpage">{{ username }}</a></li>
+          <li><a href="/homepage">Home</a></li>
+          <li class="dropdown active">
+            <a href="#">View by<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="/budget">Budget</a></li>
+              <li><a href="/region">Region</a></li>
+              <li><a href="/ranking">Ranking</a></li>
+            </ul>
+          </li>
+          <li><a href="/aboutus">About Us</a></li>
+          <li><a href="{{ logout }}">Logout</a></li>
+        </ul>
+      </div>
+    </div>
   </div>
 
   
-<div class="container list-container">
-  <div class="list-group">
-    
-    <a href="#demo" class="list-group-item" data-toggle="collapse">
-      <p><span class= "glyphicon glyphicon-chevron-right"></span>
-      Below $500</p>
-    </a>
-      <div id="demo" class="collapse">
-       <!--THUMBNAILS=======================-->
+  <div class="container list-container">
+    <div class="list-group">
+      
+      <a href="#demo" class="list-group-item" data-toggle="collapse">
+        <p><span class= "glyphicon glyphicon-chevron-right"></span>
+          Below $500</p>
+        </a>
+        <div id="demo" class="collapse">
+         <!--THUMBNAILS=======================-->
 
-        <div class="container sch-container">
+         <div class="container sch-container">
           <div class="row">
             {% for i in query_0 %}
             <div class="col-sm-6 col-md-3">
@@ -67,14 +67,15 @@
                 <img src="{{i.pic_sml}}" style="padding-top: 8px;">
                 <div class="schoolcaption" style="text-align:center; margin-top:10px;">
                   <h4>{{ i.name }}</h4>
-                    <div class="view-add-container"><form action="/search" method="get">
-                      <input type="hidden" name="uni_name" value="{{ i.name }}">
-                      <button type="submit" class="btn btn-info view-btn" role="button">View</button>
-                    </form>
+                  <div class="view-add-container"><form action="/search" method="get">
+                    <input type="hidden" name="uni_name" value="{{ i.name }}">
+                    <button type="submit" class="btn btn-info view-btn" role="button">View</button>
+                  </form>
 
-                    <form action="#">
-                      <button type="submit" class="btn btn-success add-btn" role="button">Add</button>
-                    </form></div>
+                  <form action="#" method="get">
+                    <input type="hidden" name="uni_name" value="{{ i.name }}">
+                    <button type="submit" class="btn btn-success add-btn">Add</button>
+                  </form></div>
 
                 </div>
               </div>
@@ -84,111 +85,114 @@
         </div><!--closing tag for conatiner-->
 
       </div><!--closing tag for demo id-->
-    
-    <a href="#demo2" class="list-group-item" data-toggle="collapse">
-      <p><span class= "glyphicon glyphicon-chevron-right"></span>
-      $500~$1000</p>
-    </a>
-      <div id="demo2" class="collapse">        
-
-        <div class="container sch-container">
-          <div class="row">
-            {% for i in query_500 %}
-            <div class="col-sm-6 col-md-3">
-              <div class="thumbnail">
-                <img src="{{i.pic_sml}}" style="padding-top: 8px;">
-                <div class="schoolcaption" style="text-align:center; margin-top:10px;">
-                  <h4>{{ i.name }}</h4>
-                    <div class="view-add-container"><form action="/search" method="get">
-                      <input type="hidden" name="uni_name" value="{{ i.name }}">
-                      <button type="submit" class="btn btn-info view-btn" role="button">View</button>
-                    </form>
-
-                    <form action="#">
-                      <button type="submit" class="btn btn-success add-btn" role="button">Add</button>
-                    </form></div>
-
-                </div>
-              </div>
-            </div>
-            {% endfor %}
-          </div>
-        </div><!--closing tag for conatiner-->
-      </div><!-- close demo2-->
-
-    <a href="#demo3" class="list-group-item" data-toggle="collapse">
-      <p><span class= "glyphicon glyphicon-chevron-right"></span>
-      $1,000~$1,500</p>
-    </a>
-      <div id="demo3" class="collapse">
-        <div class="container sch-container">
-          <div class="row">
-            {% for i in query_1000 %}
-            <div class="col-sm-6 col-md-3">
-              <div class="thumbnail">
-                <img src="{{i.pic_sml}}" style="padding-top: 8px;">
-                <div class="schoolcaption" style="text-align:center; margin-top:10px;">
-                  <h4>{{ i.name }}</h4>
-                    <div class="view-add-container"><form action="/search" method="get">
-                      <input type="hidden" name="uni_name" value="{{ i.name }}">
-                      <button type="submit" class="btn btn-info view-btn" role="button">View</button>
-                    </form>
-
-                    <form action="#">
-                      <button type="submit" class="btn btn-success add-btn" role="button">Add</button>
-                    </form></div>
-
-                </div>
-              </div>
-            </div>
-            {% endfor %}
-          </div>
-        </div><!--closing tag for conatiner-->
-
-      </div><!--closing tag for demo3-->
       
-    <a href="#demo4" class="list-group-item" data-toggle="collapse">
-      <p><span class= "glyphicon glyphicon-chevron-right"></span>
-      Above $1,500</p>
-    </a>
-      <div id="demo4" class="collapse">       
-       <div class="container sch-container">
-          <div class="row">
-            {% for i in query_1500 %}
-            <div class="col-sm-6 col-md-3">
-              <div class="thumbnail">
-                <img src="{{i.pic_sml}}" style="padding-top: 8px;">
-                <div class="schoolcaption" style="text-align:center; margin-top:10px;">
-                  <h4>{{ i.name }}</h4>
+      <a href="#demo2" class="list-group-item" data-toggle="collapse">
+        <p><span class= "glyphicon glyphicon-chevron-right"></span>
+          $500~$1000</p>
+        </a>
+        <div id="demo2" class="collapse">        
+
+          <div class="container sch-container">
+            <div class="row">
+              {% for i in query_500 %}
+              <div class="col-sm-6 col-md-3">
+                <div class="thumbnail">
+                  <img src="{{i.pic_sml}}" style="padding-top: 8px;">
+                  <div class="schoolcaption" style="text-align:center; margin-top:10px;">
+                    <h4>{{ i.name }}</h4>
                     <div class="view-add-container"><form action="/search" method="get">
                       <input type="hidden" name="uni_name" value="{{ i.name }}">
                       <button type="submit" class="btn btn-info view-btn" role="button">View</button>
                     </form>
 
-                    <form action="#">
-                      <button type="submit" class="btn btn-success add-btn" role="button">Add</button>
+                    <form action="#" method="get">
+                      <input type="hidden" name="uni_name" value="{{ i.name }}">
+                      <button type="submit" class="btn btn-success add-btn">Add</button>
                     </form></div>
 
+                  </div>
                 </div>
               </div>
+              {% endfor %}
             </div>
-            {% endfor %}
-          </div>
-        </div><!--closing tag for conatiner-->
+          </div><!--closing tag for conatiner-->
+        </div><!-- close demo2-->
 
-      </div><!--closing tag for demo4-->
+        <a href="#demo3" class="list-group-item" data-toggle="collapse">
+          <p><span class= "glyphicon glyphicon-chevron-right"></span>
+            $1,000~$1,500</p>
+          </a>
+          <div id="demo3" class="collapse">
+            <div class="container sch-container">
+              <div class="row">
+                {% for i in query_1000 %}
+                <div class="col-sm-6 col-md-3">
+                  <div class="thumbnail">
+                    <img src="{{i.pic_sml}}" style="padding-top: 8px;">
+                    <div class="schoolcaption" style="text-align:center; margin-top:10px;">
+                      <h4>{{ i.name }}</h4>
+                      <div class="view-add-container"><form action="/search" method="get">
+                        <input type="hidden" name="uni_name" value="{{ i.name }}">
+                        <button type="submit" class="btn btn-info view-btn" role="button">View</button>
+                      </form>
 
-      
-  </div><!--list group-->
-</div><!--tag for list container-->
+                      <form action="#" method="get">
+                        <input type="hidden" name="uni_name" value="{{ i.name }}">
+                        <button type="submit" class="btn btn-success add-btn">Add</button>
+                      </form></div>
 
-  <a href="#" class="back-to-top"><i class="glyphicon glyphicon-chevron-up"></i></a>
+                    </div>
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
+            </div><!--closing tag for conatiner-->
+
+          </div><!--closing tag for demo3-->
+          
+          <a href="#demo4" class="list-group-item" data-toggle="collapse">
+            <p><span class= "glyphicon glyphicon-chevron-right"></span>
+              Above $1,500</p>
+            </a>
+            <div id="demo4" class="collapse">       
+             <div class="container sch-container">
+              <div class="row">
+                {% for i in query_1500 %}
+                <div class="col-sm-6 col-md-3">
+                  <div class="thumbnail">
+                    <img src="{{i.pic_sml}}" style="padding-top: 8px;">
+                    <div class="schoolcaption" style="text-align:center; margin-top:10px;">
+                      <h4>{{ i.name }}</h4>
+                      <div class="view-add-container"><form action="/search" method="get">
+                        <input type="hidden" name="uni_name" value="{{ i.name }}">
+                        <button type="submit" class="btn btn-info view-btn" role="button">View</button>
+                      </form>
+
+                      <form action="#" method="get">
+                        <input type="hidden" name="uni_name" value="{{ i.name }}">
+                        <button type="submit" class="btn btn-success add-btn">Add</button>
+                      </form></div>
+
+                    </div>
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
+            </div><!--closing tag for conatiner-->
+
+          </div><!--closing tag for demo4-->
+
+          
+        </div><!--list group-->
+      </div><!--tag for list container-->
+
+      <a href="#" class="back-to-top"><i class="glyphicon glyphicon-chevron-up"></i></a>
 
 
-	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-	<!-- Latest compiled and minified JavaScript -->
-	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="bootstrap/js/myjs.js"></script>
-</body>
-</html>
+      <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+      <!-- Latest compiled and minified JavaScript -->
+      <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+      <script type="text/javascript" src="bootstrap/js/myjs.js"></script>
+    </body>
+    </html>

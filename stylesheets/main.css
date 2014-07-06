@@ -283,6 +283,35 @@ a.carousel-arrow:hover {
     bottom:0%;
 }
 
+/*FILTER=============================================================*/
+.menu{
+  display: none;
+  text-align: center;
+}
+
+.menu p{
+  display: inline-block; 
+  width: 100px; 
+  font-size: 18px;
+  text-align: left;
+}
+
+.filter-option{
+  width: 400px;
+  display: inline-block;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+.menu button{
+  display: block;
+  margin-top: 10px;
+  margin-left: 750px;
+  border-radius: 0;
+  color: white;
+  background: rgba(43, 171, 207, 0.9);
+}
+
 /*START OF THUMBANILS=====================================================*/
 
 .sch-container{

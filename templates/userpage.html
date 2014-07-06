@@ -46,12 +46,78 @@
   </div>
   </div>
   
-<!---ABOUT US===================================================-->
-<div class="container abt-container">
-      
-<h4>see if we need this page for add to favourites function.</h4>
+<!---ALL THE TABS ===================================================-->
 
+      
+
+<ul class="nav nav-tabs" role="tablist" id="myTab">
+  {%for i in query %}
+  <li><a href="#{{i.rank_global}}" role="tab" data-toggle="tab">{{i.name}}</a></li>
+ {% endfor %}
+</ul>
+
+
+<div class="tab-content">
+ {%for uni in query %}
+  <div class="tab-pane" id="{{uni.rank_global}}">
+<!--ATTRIBUTES===========================================-->
+
+<div class="container indiv-container">
+  <img class="center-block" src="{{uni.pic_large}}">
+    <div class="container attributes-container">
+      <span class="attributes">Name:</span><span class="info">{{uni.name}}</span>
+      <hr>
+      <span class="attributes">City:</span><span class="info">{{uni.city_state}}</span>
+      <hr>
+      <span class="attributes">Estimated Budget:</span><span class="info">{{uni.budget}}</span>
+      <hr>
+      <span class="attributes">Ranking:</span><span class="info">{{uni.rank_global}}</span>
+      <hr>
+      <span class="attributes">Remarks:</span><span class="info">{{uni.remarks}}</span>
+      <hr>
+      <span class="attributes">Official Website:</span><span class="info">{{uni.weblink}}</span>
+  </div>
 </div>
+
+<!--COMMENTS=============================================================-->
+
+<div class="container comments-container">
+  <h2>Comments about this university</h2>
+  {% for comment in comments %}
+    <div class="feedback">
+      <span><img src="images/user-iconSML.png" class="userpic"></span>
+      <div class="one-comment">
+        <p class="contents">
+          {{comment.content}} 
+        </p><br/><br/>
+        <p class="date-time">
+          {{comment.author}}, {{ comment.date.strftime('%Y-%m-%d %I:%M%p') }}
+        </p>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+<!--LEAVE A REPLY BOX===========================================================-->
+
+<div class="container reply-container">
+  <h2>Leave a Comment/Review below!</h2>
+
+    <form action= "/search" method="post">
+      <div class="container">
+        <textarea class="input-xlarge" type="text" name="content" placeholder="Share your thoughts"></textarea>
+        <input type="hidden" name="uni_name" value="{{ uni.name }}">
+        <button class="btn" type="submit">Submit</button>
+      </div>
+    </form>
+</div>
+
+
+  </div><!--end of one tab-pane -->
+  {% endfor %}
+</div>
+
+
 
   <a href="#" class="back-to-top"><i class="glyphicon glyphicon-chevron-up"></i></a>
 

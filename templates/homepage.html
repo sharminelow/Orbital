@@ -119,13 +119,50 @@
       </div>
   </button></a>
 
-  <a href="#"><button type="button" class="btn btn-circle btn-xl"><i class="glyphicon glyphicon-th-large"></i>
+  <a><button type="button" class="btn btn-circle btn-xl" id="showmenu" ><i class="glyphicon glyphicon-th-large"></i>
      <div class="caption">
         <h4 style="color:white;">Filter</h4>
       </div>
   </button></a>
-</div>
 
+
+</div>
+<!--FILTER=========================================================================-->
+
+<div class="container menu">
+ <form action = "/results" method="get"> 
+  <p>Budget: </p>
+  <select class="form-control form-inline filter-option" name="budget">
+    <option value="none">Doesn't matter</option>
+    <option value="0">Below $500</option>
+    <option value="500">$500 ~ $999</option>
+    <option value="1000">$1000 ~ $1499</option>
+    <option value="1500">Above $1500</option>
+  
+  </select></br>
+  <p>Ranking: </p>
+  <select class="form-control form-inline filter-option" name="ranking">
+    <option value="none">Doesn't matter</option>
+    <option value="0">Below 100</option>
+    <option value="100">100 - 200</option>
+    <option value="200">200 - 300</option>
+    <option value="300">Above 300</option>
+
+
+  </select></br>
+  <p>Region: </p>
+  <select class="form-control form-inline filter-option" name="region">
+    <option value="none">Doesn't matter</option>
+    <option value="Asia">Asia</option>
+    <option value="Australia">Australia</option>
+    <option value="Europe">Europe</option>
+    <option value="America">America</option>
+    
+  </select>
+  <button class="btn" type="submit">Submit</button>
+ </form>
+
+</div>
 
 <!--THUMBNAILS=======================-->
 
@@ -143,8 +180,9 @@
               <button type="submit" class="btn btn-info view-btn" role="button">View</button>
             </form>
 
-            <form action="#">
-              <button type="submit" class="btn btn-success add-btn" role="button">Add</button>
+                     <form action="#" method="get">
+              <input type="hidden" name="uni_name" value="{{ i.name }}">
+              <button type="submit" class="btn btn-success add-btn">Add</button>
             </form></div>
 
         </div>

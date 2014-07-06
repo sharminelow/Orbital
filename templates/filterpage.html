@@ -7,6 +7,8 @@
 
 	<!-- custom CSS-->
 	<link rel="stylesheet" href="stylesheets/main.css">
+  
+
 
 </head>		
 
@@ -31,7 +33,7 @@
     <ul class="nav navbar-nav navbar-right">
       <li><a href="/userpage">{{ username }}</a></li>
       <li><a href="/homepage">Home</a></li>
-      <li class="dropdown active">
+      <li class="dropdown">
           <a href="#">View by<b class="caret"></b></a>
           <ul class="dropdown-menu">
             <li><a href="/budget">Budget</a></li>
@@ -45,12 +47,12 @@
   </div>
   </div>
   </div>
-  
-<!--THUMBNAILS=======================-->
+
+<!--FILTERED=========================================================================-->
 
 <div class="container sch-container">
   <div class="row">
-    {% for i in query_rank %}
+    {% for i in query%}
     <div class="col-sm-6 col-md-3">
       <div class="thumbnail">
         <img src="{{i.pic_sml}}" style="padding-top: 8px;">
@@ -78,10 +80,11 @@
 
   <a href="#" class="back-to-top"><i class="glyphicon glyphicon-chevron-up"></i></a>
 
-  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-  <!-- Latest compiled and minified JavaScript -->
-  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="bootstrap/js/myjs.js"></script>
 </body>
 </html>

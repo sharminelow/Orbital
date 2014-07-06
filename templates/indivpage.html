@@ -63,7 +63,11 @@
       <span class="attributes">Remarks:</span><span class="info">{{uni.remarks}}</span>
       <hr>
       <span class="attributes">Official Website:</span><span class="info">{{uni.weblink}}</span>
-  </div>
+    </div>
+    <form action="#" method="get">
+       <input type="hidden" name="uni_name" value="{{ uni.name }}">
+       <button type="submit" class="btn btn-success">Add to Favourites</button>
+    </form>
 </div>
 
 <!--COMMENTS=============================================================-->
