@@ -406,6 +406,20 @@ a.list-group-item:hover, .list-group-item.clicked{
   font-size: 2em;
 
 }
+
+a.fav-counter{
+  position:fixed;
+  width:100px;
+  height:35px;
+  border-radius: 10%;
+  bottom:100px;
+  right:30px;
+  color: white;
+  background: rgba(43, 171, 207, 0.9);
+  text-align: center;
+  vertical-align: middle;
+  padding-top: 7px;
+}
 a.back-to-top {
     position: fixed;
     width: 50px;
@@ -526,6 +540,10 @@ body, hr.fancy-line:after {
 .attributes-container > .info{
   font-size: 18px;
   
+}
+
+.indiv-container button{
+  margin-left: 500px;
 }
 
 .comments-container{

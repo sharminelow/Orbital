@@ -34,12 +34,31 @@ def addToFave(email, uni_name):
             person = Persons(id=email)
             person.next_fav = 1            
 
+        if uni_name== "":
+            return
+        
+        #chosen_key = db.Key.from_path('Persons', email,'Favourites', uni_name)
+        #chosen_uni = db.get(chosen_key)
+
         fav = Favourites(parent=curr_user, id= uni_name)
         fav.fav_uni = uni_name
         person.next_fav +=1
         person.put()
         fav.put()
-        
+
+#count the number of favourites added by user
+def countFav():
+    curr_user = ndb.Key('Persons', users.get_current_user().email())
+    query = ndb.gql("SELECT * "
+                    "FROM Favourites "
+                     "WHERE ANCESTOR IS :1 ",
+                     curr_user)
+    count = 0
+    for i in query:
+        count +=1
+    return count
+
+         
 # This part for the front page
 class MainPage(webapp2.RequestHandler):
 
@@ -60,6 +79,7 @@ class MainPageUser(webapp2.RequestHandler):
                 'username': users.get_current_user().nickname(),
                 'logout': users.create_logout_url(self.request.host_url),
                 'query' : query,
+                'counter': countFav(),
             }
             template = jinja_environment.get_template('homepage.html') 
             self.response.out.write(template.render(template_values))
@@ -97,6 +117,7 @@ class BudgetPage(webapp2.RequestHandler):
                 'query_500': query_500,
                 'query_1000': query_1000,
                 'query_1500': query_1500,
+                'counter': countFav(),
             }
             template = jinja_environment.get_template('budgetpage.html') 
             self.response.out.write(template.render(template_values))
@@ -134,6 +155,7 @@ class RegionPage(webapp2.RequestHandler):
                 'query_aust': query_aust,
                 'query_europe': query_europe,
                 'query_america': query_america,
+                'counter': countFav(),
             }
             template = jinja_environment.get_template('regionpage.html') 
             self.response.out.write(template.render(template_values))
@@ -159,6 +181,7 @@ class RankPage(webapp2.RequestHandler):
                 'username': users.get_current_user().nickname(),
                 'logout': users.create_logout_url(self.request.host_url),
                 'query_rank':query_rank,
+                'counter': countFav(),
             }
             
             template = jinja_environment.get_template('rankpage.html') 
@@ -191,6 +214,7 @@ class Search(webapp2.RequestHandler):
                 'logout': users.create_logout_url(self.request.host_url),
                 'uni' : uni,
                 'comments' : comments,
+                'counter': countFav(),
             }
             template = jinja_environment.get_template('indivpage.html') 
             self.response.out.write(template.render(template_values))
@@ -308,7 +332,8 @@ class FilterPage(webapp2.RequestHandler):
             template_values = {
                 'username': users.get_current_user().nickname(),
                 'logout': users.create_logout_url(self.request.host_url),
-                'query' : queryfinal
+                'query' : queryfinal,
+                'counter': countFav(),
             }
             
             template = jinja_environment.get_template('filterpage.html') 
