@@ -7,7 +7,6 @@
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="bootstrap/css/bootstrap.css">
 
-
 	<!-- custom CSS-->
 	<link rel="stylesheet" href="stylesheets/main.css">
 
@@ -62,7 +61,7 @@
       <hr>
       <span class="attributes">Remarks:</span><span class="info">{{uni.remarks}}</span>
       <hr>
-      <span class="attributes">Official Website:</span><span class="info">{{uni.weblink}}</span>
+      <span class="attributes">Official Website:</span><span class="info"><a href="{{uni.weblink}}">Link here!</a></span>
     </div>
     <form action="#" method="get">
        <input type="hidden" name="uni_name" value="{{ uni.name }}">
