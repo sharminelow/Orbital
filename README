@@ -1,12 +1,12 @@
-This is for orbital usages.
-updated as of 26/6/2014 for 2nd milestone
+This directory contains the source files of Unicomparator webapp.
+It uses simple bootstrap and GAE python.
 
-To create my github 
 
-steps to creating
+Authors
+---------
+Low Sharmine
+Ng WingYiu
 
--after git init-
-git add doc.name
-git commit -m 'description'
-git remote add origin https://github.com/sharminelow/githubfoldername.git
-git push origin master
+---------------------------------------------
+Webapp is created for 2014 Orbital usages.
+Last updated on 17/7/2014

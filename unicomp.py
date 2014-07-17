@@ -237,7 +237,7 @@ class Search(webapp2.RequestHandler):
 
 
 class UserPage(webapp2.RequestHandler):
-    #test page currently for database
+   
     def get(self):
         user = users.get_current_user()
         curr_user = ndb.Key('Persons', users.get_current_user().email())
@@ -291,7 +291,7 @@ class AbtUsPage(webapp2.RequestHandler):
 
 class FilterPage(webapp2.RequestHandler):
 
-    def get(self):
+    def show(self):
         user = users.get_current_user()
         if user:  # signed in already
             wanted_Budget = self.request.get('budget')
@@ -335,6 +335,9 @@ class FilterPage(webapp2.RequestHandler):
                 'logout': users.create_logout_url(self.request.host_url),
                 'query' : queryfinal,
                 'counter': countFav(),
+                'wanted_Budget' : wanted_Budget,
+                'wanted_Rank' : wanted_Rank,
+                'wanted_Region' : wanted_Region, #all this needed because of 'get' method to run query again to display same page
             }
             
             template = jinja_environment.get_template('filterpage.html') 
@@ -342,6 +345,12 @@ class FilterPage(webapp2.RequestHandler):
         else:
             self.redirect(users.create_login_url(self.request.uri))
 
+    def get(self):
+        uni_name = self.request.get('uni_name')
+        email = users.get_current_user().email()
+        addToFave(email, uni_name) 
+        self.show()
+        
 def getbudget(value):
     if value=='0':
         return "WHERE budget_avg <500"
