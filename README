@@ -1,6 +1,6 @@
 This directory contains the source files of Unicomparator webapp.
 It uses simple bootstrap and GAE python.
-
+Re-deployed to http://1.unicomparator.appspot.com
 
 Authors
 ---------
@@ -9,4 +9,4 @@ Ng WingYiu
 
 ---------------------------------------------
 Webapp is created for 2014 Orbital usages.
-Last updated on 17/7/2014
+Last updated on 23/7/2014

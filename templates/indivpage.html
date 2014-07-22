@@ -72,8 +72,8 @@
 <!--COMMENTS=============================================================-->
 
 <div class="container comments-container">
+  <a id="pagebottom"></a> 
   <h2>Comments about this university</h2>
- 
   {% for comment in comments %}
     <div class="feedback">
       <span><img src="images/user-iconSML.png" class="userpic"></span>
@@ -95,15 +95,13 @@
 
 <div class="container reply-container">
   <h2>Leave a Comment/Review below!</h2>
-
-    <form action= "/search" method="post">
+    <form action= "/search#pagebottom" method="post">
       <div class="container">
         <textarea class="input-xlarge" type="text" name="content" placeholder="Share your thoughts"></textarea>
         <input type="hidden" name="uni_name" value="{{ uni.name }}">
         <button class="btn" type="submit">Submit</button>
       </div>
     </form>
-
 
 </div>
 
