@@ -201,7 +201,7 @@ class Search(webapp2.RequestHandler):
     def show(self):
         user = users.get_current_user()
         if user:  # signed in already
-
+            
             uni=University()
             uni_name = self.request.get('uni_name')
             uni = University.get_or_insert(uni_name)
@@ -226,14 +226,23 @@ class Search(webapp2.RequestHandler):
         self.show()
         
     def post(self):
-        uni_name = self.request.get('uni_name')
-        uni_key = ndb.Key('University', uni_name)
-        comment = Comment(parent=uni_key)
-        comment.author = users.get_current_user().nickname()
-        comment.content = self.request.get('content')
-        uni.put()
-        comment.put()
-        self.show()
+
+        favOrNot = self.request.get('favOrNot')
+        if favOrNot == 'True':
+            uni_name = self.request.get('uni_name')
+            email = users.get_current_user().email()
+            addToFave(email, uni_name)
+            self.show()
+
+        else:
+            uni_name = self.request.get('uni_name')
+            uni_key = ndb.Key('University', uni_name)
+            comment = Comment(parent=uni_key)
+            comment.author = users.get_current_user().nickname()
+            comment.content = self.request.get('content')
+            uni.put()
+            comment.put()
+            self.show()
 
 
 class UserPage(webapp2.RequestHandler):

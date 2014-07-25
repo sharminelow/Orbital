@@ -63,8 +63,9 @@
       <hr>
       <span class="attributes">Official Website:</span><span class="info"><a href="{{uni.weblink}}">Link here!</a></span>
     </div>
-    <form action="#" method="get">
+    <form action="#" method="post">
        <input type="hidden" name="uni_name" value="{{ uni.name }}">
+       <input type="hidden" name="favOrNot" value="True">
        <button type="submit" class="btn btn-success">Add to Favourites!</button>
     </form>
 </div>
@@ -99,6 +100,7 @@
       <div class="container">
         <textarea class="input-xlarge" type="text" name="content" placeholder="Share your thoughts"></textarea>
         <input type="hidden" name="uni_name" value="{{ uni.name }}">
+        <input type="hidden" name="favOrNot" value="False">
         <button class="btn" type="submit">Submit</button>
       </div>
     </form>
