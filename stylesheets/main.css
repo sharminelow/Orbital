@@ -651,3 +651,29 @@ body, hr.fancy-line:after {
   padding-left: 10px;
   display:none;
 }
+
+/*USERPAGE================================================================================*/
+.remove-btn{
+  float:right;
+  border-radius: 5;
+  height:40;
+  margin-right: 130;
+  margin-bottom: 20;
+}
+
+.remove-btn:hover{
+  float:right;
+  border-radius: 5;
+  width: 120;
+  height:40;
+  margin-right: 130;
+  margin-bottom: 20;
+  -webkit-transition: width 1s ease-in-out;
+    -moz-transition: width 1s ease-in-out;
+    -o-transition: width 1s ease-in-out;
+    -ms-transition: width 1s ease-in-out;
+    transition: width 1s ease-in-out;
+
+
+ 
+}

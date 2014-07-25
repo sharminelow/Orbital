@@ -247,7 +247,7 @@ class Search(webapp2.RequestHandler):
 
 class UserPage(webapp2.RequestHandler):
    
-    def get(self):
+    def show(self):
         user = users.get_current_user()
         curr_user = ndb.Key('Persons', users.get_current_user().email())
         if user:  # signed in already
@@ -276,7 +276,19 @@ class UserPage(webapp2.RequestHandler):
             self.response.out.write(template.render(template_values))
         else:
             self.redirect(users.create_login_url(self.request.uri))
-            
+
+    def get(self):
+        self.show()
+        
+    def post(self):
+        uni_name = self.request.get('uni_name')
+        curr_user = ndb.Key('Persons', users.get_current_user().email())
+        person = curr_user.get()
+        favUnwant= ndb.Key('Favourites', uni_name, parent = curr_user)
+        favUnwant.delete()
+        person.next_fav -=1
+        self.show()
+        
 class AbtUsPage(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()

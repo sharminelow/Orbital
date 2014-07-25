@@ -40,8 +40,18 @@
  					 $( this ).fadeOut( 100 );
  					 $( this ).fadeIn( 500 );
 				});
+ 
 
 
+				/*$('.remove-btn').hover(
+					function() {
+					$(this).html("<p>Remove</p>");
+					},function(){
+						var someHtmlString = "<i class = "glyphicon glyphicon-remove"></i>";
+                        //var escaped = $("div.someClass").text(someHtmlString).html();
+						$(this).text(someHtmlString).html();
+					}	
+				);*/
 
 
 				$('#abt-img1').on('mouseover',function() {

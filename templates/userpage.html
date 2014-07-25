@@ -63,8 +63,13 @@
 <!--ATTRIBUTES===========================================-->
 
 <div class="container indiv-container">
+  <form action="#" method="post">
+      <input type="hidden" name="uni_name" value="{{ uni.name }}">
+      <button type="submit" class="btn btn-danger remove-btn"><i class = "glyphicon glyphicon-remove"></i></button>
+  </form>
   <img class="center-block" src="{{uni.pic_large}}">
     <div class="container attributes-container">
+      
       <span class="attributes">Name:</span><span class="info">{{uni.name}}</span>
       <hr>
       <span class="attributes">City:</span><span class="info">{{uni.city_state}}</span>
