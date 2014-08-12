@@ -351,11 +351,18 @@ class FilterPage(webapp2.RequestHandler):
             else:
                 queryfinal = a_list
 
+
+            if not queryfinal:
+                checkRes = "Sorry, but your search has return no results."
+            else:
+                checkRes = ""
+
             template_values = {
                 'username': users.get_current_user().nickname(),
                 'logout': users.create_logout_url(self.request.host_url),
                 'query' : queryfinal,
                 'counter': countFav(),
+                'checkRes' : checkRes,
                 'wanted_Budget' : wanted_Budget,
                 'wanted_Rank' : wanted_Rank,
                 'wanted_Region' : wanted_Region, #all this needed because of 'get' method to run query again to display same page
